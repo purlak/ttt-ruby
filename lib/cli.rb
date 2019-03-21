@@ -8,7 +8,7 @@ class TicTacToe
   end
 
   def menu
-    puts "Game Menu "
+    puts "Game Menu"
     puts "1. Play Game"
     puts "2. Game Instructions"
     puts "3. Exit"
