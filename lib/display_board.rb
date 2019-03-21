@@ -4,5 +4,4 @@ class DisplayBoard
     puts "Hello World"
   end
 
-
 end
