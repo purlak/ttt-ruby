@@ -22,9 +22,9 @@ class TicTacToe
       input = gets.strip
       case input
         when "1"
-          display_board()
+          DisplayBoard.new.call
         when "2"
-          game_instructions()
+          GameInstructions.new.call
         when "3"
           puts "Goodbye! See you soon."
           puts "\n"
