@@ -13,13 +13,20 @@ class TicTacToe
   end
 
   def user_input
-    input = 0
+    input = ""
     while input
       puts "Enter your option:"
       input = gets.chomp
-      case (input)
-
-      end 
+      case input
+        when "1"
+          display_board()
+        when "2"
+          puts "Goodbye!"
+          exit
+        else
+          puts "Invalid choice. Try again!"
+          menu
+      end
     end
   end
 
