@@ -18,6 +18,6 @@ class DisplayBoard
     input = ""
     puts "Choose Marker (X or O)"
     input = gets.strip
-    binding.pry
+    # binding.pry
   end
 end
