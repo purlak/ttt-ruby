@@ -13,18 +13,22 @@ end
 
 describe 'Game Menu' do
   it 'displays header message "Game Menu"' do
-    expect { print 'Game Menu' }.to output('Game Menu').to_stdout
+    cli = Cli.new
+    expect { cli.menu }.to output('Game Menu').to_stdout
   end
 
   it 'displays Option 1' do
-    expect { print '1. Play Game' }.to output('1. Play Game').to_stdout
+    cli = Cli.new
+    expect { cli.menu }.to output('1. Play Game').to_stdout
   end
 
   it 'displays Option 2' do
-    expect { print '2. Game Instructions' }.to output('2. Game Instructions').to_stdout
+    cli = Cli.new
+    expect { cli.menu }.to output('2. Game Instructions').to_stdout
   end
 
   it 'displays Option 3' do
-    expect { print '3. Exit' }.to output('3. Exit').to_stdout
+    cli = Cli.new
+    expect { cli.menu }.to output('3. Exit').to_stdout
   end
 end
