@@ -13,8 +13,6 @@ end
 
 describe 'Game Menu' do
   it 'displays header message "Game Menu"' do
-    expect($stdout).to receive(:puts).with("Game Menu")
-
+    expect { print 'Game Menu' }.to output('Game Menu').to_stdout
   end
-
 end
