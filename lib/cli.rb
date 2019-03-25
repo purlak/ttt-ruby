@@ -1,4 +1,4 @@
-class TicTacToe
+class Cli
   def call
     system("clear")
     puts "Welcome to Tic Tac Toe!"
