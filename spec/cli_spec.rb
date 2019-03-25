@@ -6,8 +6,8 @@ describe 'Welcome' do
   end
 
   it 'should call "menu"' do
-    new_menu = TicTacToe.new
-    expect(new_menu).to respond_to(:menu)
+    cli = Cli.new
+    expect(cli).to respond_to(:menu)
   end
 end
 
