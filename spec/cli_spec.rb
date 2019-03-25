@@ -27,4 +27,5 @@ describe 'Game Menu' do
   it 'displays Option 3' do
     expect { print '3. Exit' }.to output('3. Exit').to_stdout
   end
+
 end
