@@ -10,3 +10,11 @@ describe 'Welcome' do
     expect(new_menu).to respond_to(:menu)
   end
 end
+
+describe 'Game Menu' do
+  it 'displays header message "Game Menu"' do
+    expect($stdout).to receive(:puts).with("Game Menu")
+
+  end
+
+end
