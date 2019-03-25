@@ -15,4 +15,9 @@ describe 'Game Menu' do
   it 'displays header message "Game Menu"' do
     expect { print 'Game Menu' }.to output('Game Menu').to_stdout
   end
+
+  it 'displays Option 1 "1. Play Game"' do
+    expect { print '1. Play Game' }.to output('1. Play Game').to_stdout
+  end
+
 end
