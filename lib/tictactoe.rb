@@ -4,4 +4,4 @@ require_relative './game_instructions.rb'
 
 require 'pry'
 
-TicTacToe.new.call
+Cli.new.call
