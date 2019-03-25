@@ -20,4 +20,8 @@ describe 'Game Menu' do
     expect { print '1. Play Game' }.to output('1. Play Game').to_stdout
   end
 
+  it 'displays Option 2 "2. Game Instructions"' do
+    expect { print '2. Game Instructions' }.to output('2. Game Instructions').to_stdout
+  end
+
 end
