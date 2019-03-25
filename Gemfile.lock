@@ -27,6 +27,7 @@ PLATFORMS
 DEPENDENCIES
   pry
   rspec
+  rspec-core
 
 BUNDLED WITH
    2.0.1
