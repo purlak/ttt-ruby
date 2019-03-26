@@ -4,9 +4,8 @@ describe 'call' do
   before do
     @cli = Cli.new
   end
-  
+
   it 'displays menu' do
-    # cli = Cli.new
     expected =
       "Welcome to Tic Tac Toe!\n" +
       "Game Menu\n" +
