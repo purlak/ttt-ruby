@@ -1,4 +1,5 @@
 require_relative '../lib/cli.rb'
+require_relative '../lib/userInput.rb'
 
 describe 'call' do
   it 'displays menu' do
