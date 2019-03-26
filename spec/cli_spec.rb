@@ -4,6 +4,7 @@ describe 'call' do
   before do
     @cli = Cli.new
   end
+  
   it 'displays menu' do
     # cli = Cli.new
     expected =
