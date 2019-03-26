@@ -5,6 +5,10 @@ describe 'call' do
     @cli = Cli.new
   end
 
+  it 'does not run system("clear")' do
+    skip system("clear")
+  end
+
   it 'displays menu' do
     expected =
       "Welcome to Tic Tac Toe!\n" +
