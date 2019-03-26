@@ -1,7 +1,7 @@
 require_relative '../lib/cli.rb'
 
 describe 'call' do
-  it 'displays welcome message and menu' do
+  it 'displays menu' do
     cli = Cli.new
     expected =
       "Welcome to Tic Tac Toe!\n" +
