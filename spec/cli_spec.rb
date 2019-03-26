@@ -11,9 +11,4 @@ describe 'call' do
       "3. Exit\n"
     expect { cli.call }.to output(expected).to_stdout
   end
-
-  it 'calls user_input' do
-    cli = Cli.new
-    expect { cli.call }.to respond_to(:user_input)
-  end
 end
