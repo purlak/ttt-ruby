@@ -11,8 +11,4 @@ describe 'call' do
       "3. Exit\n"
     expect { cli.call }.to output(expected).to_stdout
   end
-  # it 'should call "menu"' do
-  #   cli = Cli.new
-  #   expect(cli).to respond_to(:menu)
-  # end
 end
