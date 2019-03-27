@@ -6,7 +6,7 @@ describe 'call' do
   end
 
   it 'does not run system("clear")' do
-    skip system("clear")
+
   end
 
   it 'displays menu' do
