@@ -5,17 +5,10 @@ describe 'call' do
     @cli = Cli.new
   end
 
-  it 'does not run system("clear")' do
-
-  end
-
   it 'displays menu' do
+    allow(@cli).to receive(:clear_screen)
     expected =
-      "Welcome to Tic Tac Toe!\n" +
-      "Game Menu\n" +
-      "1. Play Game\n" +
-      "2. Game Instructions\n" +
-      "3. Exit\n"
+      "Welcome to Tic Tac Toe!\n"
     expect { @cli.call }.to output(expected).to_stdout
   end
 end
