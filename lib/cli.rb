@@ -1,5 +1,6 @@
 class Cli
   def call
+    clear_screen
     puts menu
     puts select_marker
   end
