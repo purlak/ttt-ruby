@@ -1,14 +1,19 @@
 class Cli
   def call
-    system("clear")
-    puts "Welcome to Tic Tac Toe!\n"
+    clear_screen
     puts menu
+    puts select_marker
   end
 
   def menu
-    "Game Menu\n" +
-    "1. Play Game\n" +
-    "2. Game Instructions\n" +
-    "3. Exit\n"
+    "Welcome to Tic Tac Toe!\n"
+  end
+
+  def select_marker
+    "Choose 'X' or 'O' to play game: \n"
+  end
+
+  def clear_screen
+    system("clear")
   end
 end
