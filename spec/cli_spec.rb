@@ -1,25 +1,21 @@
 require_relative '../lib/cli.rb'
+require_relative '../lib/content.rb'
 
 describe 'call' do
+  let(:content) { double(select_marker: "") }
+  let(:cli) { Cli.new(content) }
+
   before do
-    allow($stdout).to receive(:puts)
-
-    @cli = Cli.new
-  end
-
-  it 'clears screen before printing menu' do
-    expect(@cli).to receive(:clear_screen)
-
-    @cli.call
+    expect(cli).to receive(:clear_screen)
   end
 
   it 'displays menu and allows user to select marker' do
-    allow(@cli).to receive(:clear_screen)
+    # expected =
+    #   "Welcome to Tic Tac Toe!\n" +
+    #   "Choose 'X' or 'O' to play game: \n"
+    expect(content).to receive(:menu)
+    expect(content).to receive(:select_marker).and_return("whatever")
 
-    expected =
-      "Welcome to Tic Tac Toe!\n" +
-      "Choose 'X' or 'O' to play game: \n"
-
-    expect { @cli.call }.to output(expected).to_stdout
+    cli.call
   end
 end
