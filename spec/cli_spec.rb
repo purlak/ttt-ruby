@@ -24,5 +24,11 @@ describe 'call' do
     text = "test"
     expect(@cli).to receive(:display_text).with(text).and_return(text)
     @cli.display_text(text)
+  end
+
+  it 'takes user input' do
+    allow(@cli).to receive(:clear_screen)
+    expect(@cli).to receive(:user_input)
+    @cli.call
   end 
 end

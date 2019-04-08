@@ -4,6 +4,7 @@ class Cli
     clear_screen
     display_text(Content.welcome)
     display_text(Content.select_marker)
+    user_input 
   end
 
   def display_text(text)
@@ -13,4 +14,9 @@ class Cli
   def clear_screen
     system("clear")
   end
+
+  def user_input
+
+
+  end   
 end
