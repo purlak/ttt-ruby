@@ -1,5 +1,5 @@
 require_relative './content.rb'
-class Cli
+class Cli 
   def call
     clear_screen
     display_text(Content.menu)
