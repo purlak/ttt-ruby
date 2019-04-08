@@ -19,4 +19,10 @@ describe 'call' do
     expect(@cli).to receive(:display_text).with(Content.select_marker)
     @cli.call
   end
+
+  it 'displays text' do
+    text = "test"
+    expect(@cli).to receive(:display_text).with(text).and_return(text)
+    @cli.display_text(text)
+  end 
 end
