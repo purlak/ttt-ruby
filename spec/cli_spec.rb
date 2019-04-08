@@ -3,7 +3,6 @@ require_relative '../lib/content.rb'
 require 'pry'
 
 describe 'call' do
-  
   before do
     allow($stdout).to receive(:puts)
     @cli = Cli.new
