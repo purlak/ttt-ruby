@@ -1,5 +1,5 @@
 module Content
-	def self.menu
+	def self.welcome
     "Welcome to Tic Tac Toe!"
   end
 

@@ -2,7 +2,7 @@ require_relative './content.rb'
 class Cli 
   def call
     clear_screen
-    display_text(Content.menu)
+    display_text(Content.welcome)
     display_text(Content.select_marker)
   end
 
