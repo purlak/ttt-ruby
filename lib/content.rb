@@ -1,9 +1,9 @@
 module Content
-	def self.menu
+	def menu
     "Welcome to Tic Tac Toe!"
   end
 
-  def self.select_marker
+  def select_marker
     "Choose 'X' or 'O' to play game:"
   end
 end 
