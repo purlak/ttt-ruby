@@ -17,7 +17,6 @@ class Cli
   end
 
   def user_input 
-
-
+    input = gets.chomp
   end 
 end
