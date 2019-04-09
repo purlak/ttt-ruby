@@ -44,6 +44,12 @@ end
 
 describe 'user_input' do 
   it 'takes an user input' do 
-    allow($stdin).to receive(:gets).and_return('nil')
+    allow($stdin).to receive(:gets).and_return('X')
   end 
+
+  # it 'calls Board' do
+  #   cli = Cli.new
+  #   board = Board.new
+  #   expect(cli).to receive(board).with('X')
+  # end 
 end 
