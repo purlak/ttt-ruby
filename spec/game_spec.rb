@@ -13,6 +13,6 @@ describe 'game' do
 		allow($stdout).to receive(:puts) 
 		expected = "  |  |  \n--------\n  |  |  \n--------\n  |  |  \n"
 		expect {@game.empty_board}.to output(expected).to_stdout 
-    	@game.empty_board
+    @game.empty_board
 	end 
 end 
