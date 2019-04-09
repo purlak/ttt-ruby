@@ -1,5 +1,5 @@
 require_relative './content.rb'
-require_relative './board.rb'
+require_relative './game.rb'
 
 class Cli 
   def call
@@ -19,5 +19,7 @@ class Cli
 
   def user_input 
     gets.chomp
-  end 
+    Game.new.empty_board 
+  end
 end
+

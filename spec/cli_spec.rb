@@ -43,13 +43,22 @@ describe 'display_text' do
 end 
 
 describe 'user_input' do 
+  before do
+    allow($stdin).to receive(:gets)
+    allow($stdout).to receive(:puts)
+    @cli = Cli.new
+  end
+
   it 'takes an user input' do 
-    allow($stdin).to receive(:gets).and_return('X')
+    allow(@cli).to receive(:gets).and_return('X')
+    @cli.user_input
   end 
 
-  # it 'calls Board' do
-  #   cli = Cli.new
-  #   board = Board.new
-  #   expect(cli).to receive(board).with('X')
-  # end 
+  it 'starts a new game' do 
+    allow(@cli).to receive(:gets).and_return('nil')
+    game = Game.new
+    expected = "  |  |  \n--------\n  |  |  \n--------\n  |  |  \n"
+    expect(@cli).to receive(:user_input).and_return(expected)
+    @cli.user_input
+  end 
 end 
