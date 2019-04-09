@@ -1,4 +1,5 @@
 require_relative './content.rb'
+require_relative './board.rb'
 
 class Cli 
   def call
@@ -17,6 +18,6 @@ class Cli
   end
 
   def user_input 
-    input = gets.chomp
+    gets.chomp
   end 
 end
