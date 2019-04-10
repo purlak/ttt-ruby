@@ -30,4 +30,5 @@ describe 'game' do
       allow(@game).to receive(:gets).and_return('X')
       @game.user_input
     end
+  end
 end
