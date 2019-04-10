@@ -6,7 +6,6 @@ class Cli
     clear_screen
     display_text(Content.welcome)
     display_text(Content.select_marker)
-    Game.new.user_input
   end
 
   def display_text(text)
