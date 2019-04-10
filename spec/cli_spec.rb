@@ -27,7 +27,7 @@ describe 'call' do
     allow(@cli).to receive(:clear_screen)
     expect(@cli).to receive(:user_input)
     @cli.call
-  end 
+  end
 end
 
 describe 'display_text' do
@@ -36,29 +36,29 @@ describe 'display_text' do
   end
 
   it 'takes in a text argument displays text' do
-    text = "test"
+    text = 'test'
     expect(@cli).to receive(:display_text).with(text).and_return(text)
     @cli.display_text(text)
   end
-end 
+end
 
-describe 'user_input' do 
+describe 'user_input' do
   before do
     allow($stdin).to receive(:gets)
     allow($stdout).to receive(:puts)
     @cli = Cli.new
   end
 
-  it 'takes an user input' do 
+  it 'takes an user input' do
     allow(@cli).to receive(:gets).and_return('X')
     @cli.user_input
-  end 
+  end
 
-  it 'starts a new game' do 
+  it 'starts a new game' do
     allow(@cli).to receive(:gets).and_return('nil')
     game = Game.new
     expected = "  |  |  \n--------\n  |  |  \n--------\n  |  |  \n"
     expect(@cli).to receive(:user_input).and_return(expected)
     @cli.user_input
-  end 
-end 
+  end
+end

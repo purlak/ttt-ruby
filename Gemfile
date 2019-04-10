@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
-gem "rspec"
-gem "rspec-core"
-gem "pry"
+gem 'pry'
+gem 'rspec'
+gem 'rspec-core'
+gem 'rubocop-performance'
