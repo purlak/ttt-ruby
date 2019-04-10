@@ -1,6 +1,5 @@
 require_relative '../lib/cli.rb'
 require_relative '../lib/content.rb'
-require 'pry'
 
 describe 'call' do
   before do
