@@ -10,7 +10,7 @@ class Cli
   end
 
   def display_text(text)
-    puts text + "\n\n"
+    puts "#{text}\n\n"
   end 
 
   def clear_screen
