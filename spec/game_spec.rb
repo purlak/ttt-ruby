@@ -12,7 +12,7 @@ describe 'game' do
   it 'shows an empty board' do
     allow($stdout).to receive(:puts)
     expected = "  |  |  \n--------\n  |  |  \n--------\n  |  |  \n"
-    expect { @game.empty_board }.to output(expected).to_stdout
-    @game.empty_board
+    expect { @game.display_board }.to output(expected).to_stdout
+    @game.display_board
   end
 end

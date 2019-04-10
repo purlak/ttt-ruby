@@ -19,6 +19,6 @@ class Cli
 
   def user_input
     gets.chomp
-    Game.new.empty_board
+    Game.new.display_board
   end
 end
