@@ -23,6 +23,12 @@ describe 'game' do
       expect { @game.display_board }.to output(expected).to_stdout
       @game.display_board
     end
+
+    it 'calls turn' do
+      allow(@game).to receive(:gets).and_return('')
+      expect(@game).to receive(:turn)
+      @game.call
+    end
   end
 
   describe 'user_input' do

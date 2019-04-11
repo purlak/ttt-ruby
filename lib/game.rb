@@ -4,6 +4,7 @@ class Game
   def call
     user_input
     display_board
+    turn
   end
 
   def initialize
@@ -21,4 +22,8 @@ class Game
     puts '--------'
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
+
+  def turn
+
+  end 
 end
