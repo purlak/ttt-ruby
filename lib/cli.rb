@@ -1,19 +1,18 @@
+require_relative './content.rb'
+require_relative './game.rb'
+
 class Cli
   def call
     clear_screen
-    puts menu
-    puts select_marker
+    display_text(Content.welcome)
+    display_text(Content.select_marker)
   end
 
-  def menu
-    "Welcome to Tic Tac Toe!\n"
-  end
-
-  def select_marker
-    "Choose 'X' or 'O' to play game: \n"
+  def display_text(text)
+    puts "#{text}\n\n"
   end
 
   def clear_screen
-    system("clear")
+    system('clear')
   end
 end
