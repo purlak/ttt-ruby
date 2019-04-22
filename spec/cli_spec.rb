@@ -1,36 +1,33 @@
 require_relative '../lib/cli.rb'
 require_relative '../lib/content.rb'
 
-describe 'call' do
+describe Cli do
   before do
-    allow($stdin).to receive(:gets)
     allow($stdout).to receive(:puts)
-    @cli = Cli.new
   end
 
-  it 'clears screen before printing menu' do
-    expect(@cli).to receive(:clear_screen)
-    allow(@cli).to receive(:gets).and_return('')
-    @cli.call
-  end
+  describe 'call' do
+    it 'clears screen before printing menu' do
+      expect(subject).to receive(:clear_screen)
 
-  it 'displays welcome message and marker options' do
-    allow(@cli).to receive(:clear_screen)
-    allow(@cli).to receive(:gets).and_return('')
-    expect(@cli).to receive(:display_text).with(Content.welcome)
-    expect(@cli).to receive(:display_text).with(Content.select_marker)
-    @cli.call
-  end
-end
+      subject.call
+    end
 
-describe 'display_text' do
-  before do
-    @cli = Cli.new
-  end
+    it 'takes in a text argument displays text' do
+      text = 'test'
 
-  it 'takes in a text argument displays text' do
-    text = 'test'
-    expect(@cli).to receive(:display_text).with(text).and_return(text)
-    @cli.display_text(text)
+      expect(subject).to receive(:display_text).with(text).and_return(text)
+
+      subject.display_text(text)
+    end
+
+    it 'displays welcome message and menu options' do
+      allow(subject).to receive(:clear_screen)
+      expected = "Welcome to Tic Tac Toe!\n\nSelect your game:\n1. Human v. Human\n2. Human v. Computer\n\n"
+
+      expect do
+        subject.call
+      end.to output(expected).to_stdout
+    end
   end
 end
