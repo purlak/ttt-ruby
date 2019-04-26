@@ -6,7 +6,6 @@ class Cli
     clear_screen
     display_text(Content.welcome)
     display_text(Content.menu)
-    # display_text(Content.select_marker)
   end
 
   def display_text(text)

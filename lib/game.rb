@@ -5,15 +5,15 @@ class Game
   attr_accessor :board, :player1, :player2
 
   WIN_COMBINATIONS = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [6, 4, 2]
-  ]
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [6, 4, 2]
+  ].freeze
 
   def initialize(board = Board.new)
     @board = board
@@ -22,15 +22,15 @@ class Game
   def user_input
     input = gets.chomp
     case input
-      when '1'
-        @player1 = Player::Human.new("X")
-        @player2 = Player::Human.new("O")
-      when '2'
-        @player1 = Player::Human.new("X")
-        @player2 = Player::Ai.new("O")
-      else
-        puts "\nInvalid choice. Select '1' or '2' to start game:"
-        user_input
+    when '1'
+      @player1 = Player::Human.new('X')
+      @player2 = Player::Human.new('O')
+    when '2'
+      @player1 = Player::Human.new('X')
+      @player2 = Player::Computer.new('O')
+    else
+      puts "\nInvalid choice. Select '1' or '2' to start game:"
+      user_input
     end
   end
 
@@ -40,7 +40,7 @@ class Game
 
   def won?
     WIN_COMBINATIONS.find do |combo|
-      @board.board[combo[0]] == @board.board[combo[1]] && @board.board[combo[1]] == @board.board[combo[2]] && @board.board[combo[0]] != " "
+      @board.board[combo[0]] == @board.board[combo[1]] && @board.board[combo[1]] == @board.board[combo[2]] && @board.board[combo[0]] != ' '
     end
   end
 
@@ -51,7 +51,7 @@ class Game
   def over?
     won? || draw?
   end
-  
+
   def winner
     @board.board[won?[0]] if won?
   end
@@ -75,9 +75,7 @@ class Game
     user_input
     @board.reset!
     @board.display_board
-    until over?
-      turn
-    end
+    turn until over?
     if draw?
       puts "\nGame Draws."
     elsif won?
