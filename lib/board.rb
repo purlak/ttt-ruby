@@ -55,4 +55,8 @@ class Board
     input = input.to_i
     @board[input - 1] = player.marker
   end
+
+  def reset_spot(spot)
+    @board[spot - 1] = spot
+  end
 end

@@ -1,52 +1,54 @@
+require_relative '../moves.rb'
 class Player::Ai < Player
-  attr_accessor :board, :score
+  include Moves
+  attr_accessor :board, :marker, :human_player, :score, :counter, :game
 
-  WIN_COMBINATIONS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [6, 4, 2]
-  ].freeze
-
-  def initialize(score = 0)
-    @score = score
+  def initialize(marker, human_player)
+    @marker = marker
+    @human_player = human_player
   end
 
-  def move(board)
+  def move(board, game, recursion_counter = 0)
     @board = board
-    @humanPlayer = 'X'
-    # return a value if a terminal state is found (+10, 0, -10)
-    get_score
-    # go through available spots on the board
-    # call the minimax function on each available spot (recursion)
+    @game = game
+    scores = {}
+    @recursion_counter = recursion_counter
+    return score_move if over?
+
     available_spots = empty_indexes(board)
-    # binding.pry
-    best_move = 1
     available_spots.each do |spot|
-      input = minimax(board.board[spot])
-      # evaluate returning values from function calls
-      # and return the best value
+      binding.pry
+      board.update(spot + 1, self)
+      scores[spot] =
+        -1 * move(board, @recursion_counter + 1)
+      board.reset_spot(spot)
     end
-    best_move.to_s
+    minimax(scores)
   end
 
   def empty_indexes(board)
     board.board.each_index.select { |cell| board.board[cell] == ' ' }
   end
 
-  def get_score
-    # if won?
-    #   @score += 10
-    # elsif draw?
-    #   @score -= 0
-    # else
-    #   @score = 0
-    # end
+  def max_best_move(_scores)
+    @scores.max_by { |_key, value| value }[0]
   end
 
-  def minimax(spot); end
+  def max_best_score(scores)
+    scores.max_by { |_key, value| value }[1]
+  end
+
+  def minimax(scores)
+    @recursion_counter.zero? ? max_best_move(scores) : max_best_score(scores)
+  end
+
+  def score_move
+    if @game.current_player.marker == 'O' && won?
+      10 - @recursion_counter
+    elsif @game.current_player.marker == 'X' && won?
+      @recursion_counter - 10
+    elsif
+      0
+    end
+  end
 end
