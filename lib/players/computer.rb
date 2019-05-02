@@ -1,17 +1,8 @@
-class Player::Computer < Player
-  attr_accessor :board
-  WIN_COMBINATIONS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [6, 4, 2]
-  ].freeze
+require_relative '../win_combinations.rb'
 
-  CORNERS = [0, 2, 8, 6].freeze
+class Player::Computer < Player
+  include WinCombinations
+  attr_accessor :board
 
   def move(board)
     @board = board
@@ -37,24 +28,24 @@ class Player::Computer < Player
 
   def winning_move
     winning_row = WIN_COMBINATIONS.find do |combo|
-      (board.board[combo[0]] == marker && board.board[combo[1]] == marker && board.board[combo[2]] == ' ') || (board.board[combo[2]] == marker && board.board[combo[1]] == marker && board.board[combo[0]] == ' ') || (board.board[combo[0]] == marker && board.board[combo[2]] == marker && board.board[combo[1]] == ' ')
+      (board.cells[combo[0]] == marker && board.cells[combo[1]] == marker && board.cells[combo[2]] == ' ') || (board.cells[combo[2]] == marker && board.cells[combo[1]] == marker && board.cells[combo[0]] == ' ') || (board.cells[combo[0]] == marker && board.cells[combo[2]] == marker && board.cells[combo[1]] == ' ')
     end
     unless winning_row.nil?
-      winning_cell = winning_row.find { |cell| board.board[cell] == ' ' }
+      winning_cell = winning_row.find { |cell| board.cells[cell] == ' ' }
     end
   end
 
   def blocking_move
     winning_row = WIN_COMBINATIONS.find do |combo|
-      (board.board[combo[0]] == other && board.board[combo[1]] == other && board.board[combo[2]] == ' ') || (board.board[combo[1]] == other && board.board[combo[2]] == other && board.board[combo[0]] == ' ') || (board.board[combo[2]] == other && board.board[combo[0]] == other && board.board[combo[1]] == ' ')
+      (board.cells[combo[0]] == other && board.cells[combo[1]] == other && board.cells[combo[2]] == ' ') || (board.cells[combo[1]] == other && board.cells[combo[2]] == other && board.cells[combo[0]] == ' ') || (board.cells[combo[2]] == other && board.cells[combo[0]] == other && board.cells[combo[1]] == ' ')
     end
     unless winning_row.nil?
-      winning_cell = winning_row.find { |cell| board.board[cell] == ' ' }
+      winning_cell = winning_row.find { |cell| board.cells[cell] == ' ' }
     end
   end
 
   def center?
-    board.board[4] == ' '
+    board.cells[4] == ' '
   end
 
   def corners
@@ -62,7 +53,7 @@ class Player::Computer < Player
   end
 
   def corner
-    corners.find { |corner| board.board[corner] == ' ' }
+    corners.find { |corner| board.cells[corner] == ' ' }
   end
 
   def opposite_corner

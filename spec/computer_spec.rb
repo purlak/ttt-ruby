@@ -17,19 +17,19 @@ describe Player::Computer do
 
     describe 'winning move' do
       it 'Example 1 - Computer selects position 8 to win' do
-        @board.board = ['X', 'O', 'X', 'X', 'O', ' ', 'O', ' ', 'X']
+        @board.cells = ['X', 'O', 'X', 'X', 'O', ' ', 'O', ' ', 'X']
 
         expect(@comp.move(@board)).to eq('8')
       end
 
       it 'Example 2 - Computer selects position 6 to win' do
-        @board.board = ['X', ' ', ' ', 'O', 'O', ' ', 'X', ' ', 'X']
+        @board.cells = ['X', ' ', ' ', 'O', 'O', ' ', 'X', ' ', 'X']
 
         expect(@comp.move(@board)).to eq('6')
       end
 
       it 'Example 3 - Computer selects position 4 to win' do
-        @board.board = ['X', ' ', 'X', ' ', 'O', 'O', ' ', ' ', 'X']
+        @board.cells = ['X', ' ', 'X', ' ', 'O', 'O', ' ', ' ', 'X']
 
         expect(@comp.move(@board)).to eq('4')
       end
@@ -37,13 +37,13 @@ describe Player::Computer do
 
     describe 'blocking move' do
       it 'Example 1 - Computer selects position 3 to block' do
-        @board.board = ['X', 'X', ' ', ' ', 'O', ' ', ' ', ' ', ' ']
+        @board.cells = ['X', 'X', ' ', ' ', 'O', ' ', ' ', ' ', ' ']
 
         expect(@comp.move(@board)).to eq('3')
       end
 
       it 'Example 2 - Computer selects position 8 to block' do
-        @board.board = ['O', 'X', ' ', ' ', 'X', ' ', ' ', ' ', ' ']
+        @board.cells = ['O', 'X', ' ', ' ', 'X', ' ', ' ', ' ', ' ']
 
         expect(@comp.move(@board)).to eq('8')
       end
