@@ -23,7 +23,7 @@ describe Cli do
 
     it 'displays welcome message and menu options' do
       allow(subject).to receive(:clear_screen)
-      expected = "Welcome to Tic Tac Toe!\n\nSelect your game:\n1. Human v. Human\n2. Human v. Computer\n\n"
+      expected = "Welcome to Tic Tac Toe!\n\nSelect your game:\n1. Human v. Human\n2. Human v. Ai\n\n"
 
       expect do
         subject.call

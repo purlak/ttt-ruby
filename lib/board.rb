@@ -1,62 +1,27 @@
-require 'pry'
-class Board
-  attr_accessor :board
+require_relative './game_rules.rb'
 
-  WIN_COMBINATIONS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [6, 4, 2]
-  ].freeze
+class Board
+  include GameRules
+  attr_accessor :cells
 
   def initialize
     reset!
   end
 
   def reset!
-    @board = Array.new(9, ' ')
+    @cells = Array.new(9, ' ')
   end
 
   def display_board
-    puts " #{board[0]} | #{board[1]} | #{board[2]} "
+    puts " #{cells[0]} | #{cells[1]} | #{cells[2]} "
     puts '-----------'
-    puts " #{board[3]} | #{board[4]} | #{board[5]} "
+    puts " #{cells[3]} | #{cells[4]} | #{cells[5]} "
     puts '-----------'
-    puts " #{board[6]} | #{board[7]} | #{board[8]} "
+    puts " #{cells[6]} | #{cells[7]} | #{cells[8]} "
   end
 
-  def get_position(input)
+  def update_board(input, player)
     input = input.to_i
-    @board[input - 1]
-  end
-
-  def full?
-    @board.none? { |cell| cell == ' ' || cell.nil? }
-  end
-
-  def turn_count
-    @board.count { |cell| cell == 'X' || cell == 'O' }
-  end
-
-  def taken?(input)
-    get_position(input) == 'X' || get_position(input) == 'O'
-  end
-
-  def valid_move?(input)
-    input = input.to_i
-    !taken?(input) && input.between?(1, 9)
-  end
-
-  def update(input, player)
-    input = input.to_i
-    @board[input - 1] = player.marker
-  end
-
-  def reset_spot(spot)
-    @board[spot - 1] = spot
+    @cells[input - 1] = player.marker
   end
 end

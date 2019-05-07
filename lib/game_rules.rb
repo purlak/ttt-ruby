@@ -1,4 +1,6 @@
+require_relative './moves.rb'
 module GameRules
+  include Moves
   WIN_COMBINATIONS = [
     [0, 1, 2],
     [3, 4, 5],
@@ -19,7 +21,7 @@ module GameRules
   end
 
   def draw?(board)
-    board.full?(board.cells) && !won?(board, current_player)
+    full?(board.cells) && !won?(board, current_player)
   end
 
   def over?(board)
@@ -28,5 +30,11 @@ module GameRules
 
   def winner(board)
     board.cells[won?(board, current_player)[0]] if won?(board,current_player)
+  end
+
+  def winning?(board,current_player)
+    WIN_COMBINATIONS.any? do |combo|
+      combo.all? { |position| board.cells[position] == current_player.marker }
+    end
   end
 end

@@ -10,6 +10,6 @@ module Content
   def self.menu
     "Select your game:\n" \
       "1. Human v. Human\n" \
-      '2. Human v. Computer'
+      '2. Human v. Ai'\
   end
 end

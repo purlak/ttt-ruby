@@ -1,7 +1,6 @@
-require_relative '../win_combinations.rb'
-
+require_relative '../game_rules.rb'
 class Player::Computer < Player
-  include WinCombinations
+  include GameRules
   attr_accessor :board
 
   def move(board)
@@ -65,6 +64,6 @@ class Player::Computer < Player
       7
     elsif board.taken?(7) && !board.taken?(3)
       3
-      end
+    end
   end
 end

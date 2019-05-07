@@ -1,6 +1,5 @@
 require_relative './content.rb'
 require_relative './game.rb'
-
 class Cli
   def call
     clear_screen
