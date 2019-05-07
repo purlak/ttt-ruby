@@ -1,34 +1,23 @@
 module Moves
-  WIN_COMBINATIONS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [6, 4, 2]
-  ].freeze
-
-  def current_player
-    @board.turn_count.even? ? @player1 : @player2
+  def valid_move?(board, input)
+    input = input.to_i
+    !taken?(board, input) && input.between?(1, 9)
   end
 
-  def won?
-    WIN_COMBINATIONS.find do |combo|
-      @board.board[combo[0]] == @board.board[combo[1]] && @board.board[combo[1]] == @board.board[combo[2]] && @board.board[combo[0]] != ' '
-    end
+  def get_position(board, input)
+    input = input.to_i
+    board.cells[input - 1]
   end
 
-  def draw?
-    @board.full? && !won?
+  def full?(cells)
+    cells.none? { |cell| cell == ' ' || cell.nil? }
   end
 
-  def over?
-    won? || draw?
+  def turn_count(cells)
+    cells.count { |cell| cell == 'X' || cell == 'O' }
   end
 
-  def winner
-    @board.board[won?[0]] if won?
+  def taken?(board, input)
+    get_position(board, input) == 'X' || get_position(board, input) == 'O'
   end
 end
