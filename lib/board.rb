@@ -1,6 +1,7 @@
 require_relative './game_rules.rb'
-
+require_relative './moves.rb'
 class Board
+  include Moves
   include GameRules
   attr_accessor :cells
 
@@ -21,7 +22,6 @@ class Board
   end
 
   def update_board(input, player)
-    input = input.to_i
     @cells[input - 1] = player.marker
   end
 end

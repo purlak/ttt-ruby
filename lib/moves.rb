@@ -5,7 +5,6 @@ module Moves
   end
 
   def get_position(board, input)
-    input = input.to_i
     board.cells[input - 1]
   end
 
