@@ -17,7 +17,7 @@ class Player::Computer < Player
       input = corner + 1
     else
       input = (1..9).to_a.sample while board.taken?(input)
-      end
+    end
     input.to_s
   end
 
