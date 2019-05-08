@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
-require 'require_all'
-require_all 'lib'
+Dir['./lib/*.rb', './lib/*/*.rb'].each do |f|
+  require f
+end
 
 Cli.new.call
 Game.new.play
