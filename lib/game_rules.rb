@@ -14,7 +14,7 @@ module GameRules
 
   CORNERS = [0, 2, 8, 6].freeze
 
-  def won?(board, current_player)
+  def won?(board, _current_player)
     WIN_COMBINATIONS.find do |combo|
       board.cells[combo[0]] == board.cells[combo[1]] && board.cells[combo[1]] == board.cells[combo[2]] && board.cells[combo[0]] != ' '
     end
@@ -29,10 +29,10 @@ module GameRules
   end
 
   def winner(board)
-    board.cells[won?(board, current_player)[0]] if won?(board,current_player)
+    board.cells[won?(board, current_player)[0]] if won?(board, current_player)
   end
 
-  def winning?(board,current_player)
+  def winning?(board, current_player)
     WIN_COMBINATIONS.any? do |combo|
       combo.all? { |position| board.cells[position] == current_player.marker }
     end

@@ -17,7 +17,7 @@ describe Minimax do
       @board.cells = [
         'X', 'O', 'X',
         'O', 'X', 'O',
-        ' ', 'X', ' ',
+        ' ', 'X', ' '
       ]
 
       expect(Minimax.new.move(@game)).to eq(7)
@@ -27,7 +27,7 @@ describe Minimax do
       @board.cells = [
         'X', 'X', 'O',
         'O', 'X', 'O',
-        'X', ' ', ' ',
+        'X', ' ', ' '
       ]
 
       expect(Minimax.new.move(@game)).to eq(9)
@@ -37,7 +37,7 @@ describe Minimax do
       @board.cells = [
         'X', 'X', 'O',
         'O', 'X', 'O',
-        ' ', ' ', ' ',
+        ' ', ' ', ' '
       ]
 
       expect(Minimax.new.move(@game)).to eq(9)
@@ -47,7 +47,7 @@ describe Minimax do
       @board.cells = [
         'X', ' ', ' ',
         ' ', ' ', ' ',
-        ' ', ' ', ' ',
+        ' ', ' ', ' '
       ]
 
       expect(Minimax.new.move(@game)).to eq(5)
@@ -57,7 +57,7 @@ describe Minimax do
       @board.cells = [
         'X', ' ', ' ',
         ' ', 'O', ' ',
-        'X', ' ', ' ',
+        'X', ' ', ' '
       ]
 
       expect(Minimax.new.move(@game)).to eq(4)

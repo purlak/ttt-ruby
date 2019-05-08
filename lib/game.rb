@@ -29,7 +29,7 @@ class Game
 
   def turn
     puts "\nIt's now #{current_player.marker}'s turn."
-    game_clone = self.clone
+    game_clone = clone
     input = current_player.move(game_clone).to_i
     if valid_move?(@board, input.to_s)
       @board.update_board(input, current_player)
@@ -48,11 +48,11 @@ class Game
     @board.reset!
     @board.display_board
     turn until over?(@board)
-      if draw?(@board)
-        puts "\nGame Draws."
-      elsif won?(@board, current_player)
-        puts "\nGame Over. Winner is #{winner(board)}."
-      end
+    if draw?(@board)
+      puts "\nGame Draws."
+    elsif won?(@board, current_player)
+      puts "\nGame Over. Winner is #{winner(board)}."
+    end
   end
 
   def current_player

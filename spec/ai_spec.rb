@@ -13,7 +13,7 @@ describe Player::Ai do
 
   describe 'move' do
     it 'returns a valid position for Ai to move' do
-      valid_moves = [1,2,3,4,5,6,7,8,9]
+      valid_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
       expect(valid_moves).to include(@ai.move(@game))
     end
