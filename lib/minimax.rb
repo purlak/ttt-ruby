@@ -33,7 +33,7 @@ class Minimax
 
   def empty_indexes(board)
     new_array = board.cells.each_index.select { |cell| board.cells[cell] != Primitives::MARKER_X && board.cells[cell] != Primitives::MARKER_O }
-    new_array.map! { |item| item += Primitives::ONE }
+    new_array.map! { |item| item += 1 }
   end
 
   def score_move(board, recursion_counter, current_player, opponent)
@@ -47,11 +47,11 @@ class Minimax
   end
 
   def max_best_move(scores)
-    scores.max_by { |_key, value| value }[Primitives::ZERO]
+    scores.max_by { |_key, value| value }[0]
   end
 
   def max_best_score(scores)
-    scores.max_by { |_key, value| value }[Primitives::ONE]
+    scores.max_by { |_key, value| value }[1]
   end
 
   def evaluate(recursion_counter, scores)
