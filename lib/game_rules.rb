@@ -1,4 +1,5 @@
 require_relative './moves.rb'
+require_relative './primitives.rb'
 module GameRules
   include Moves
   WIN_COMBINATIONS = [
@@ -16,7 +17,7 @@ module GameRules
 
   def won?(board, _current_player)
     WIN_COMBINATIONS.find do |combo|
-      board.cells[combo[0]] == board.cells[combo[1]] && board.cells[combo[1]] == board.cells[combo[2]] && board.cells[combo[0]] != ' '
+      board.cells[combo[0]] == board.cells[combo[1]] && board.cells[combo[1]] == board.cells[combo[2]] && board.cells[combo[0]] != Primitives::EMPTY_STRING
     end
   end
 

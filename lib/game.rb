@@ -2,6 +2,7 @@ require_relative './player.rb'
 require_relative './content.rb'
 require_relative './game_rules.rb'
 require_relative './moves.rb'
+require_relative './primitives.rb'
 class Game
   include Moves
   include GameRules
@@ -15,14 +16,14 @@ class Game
 
   def user_input
     input = gets.chomp
-    @player1 = Player::Human.new('X')
+    @player1 = Player::Human.new(Primitives::MARKER_X)
     case input
     when '1'
-      @player2 = Player::Human.new('O')
+      @player2 = Player::Human.new(Primitives::MARKER_O)
     when '2'
-      @player2 = Player::Ai.new('O')
+      @player2 = Player::Ai.new(Primitives::MARKER_O)
     else
-      puts "\nInvalid choice. Select '1' or '2' to start game:"
+      puts "\nInvalid choice. Select #{Primitives::ONE} or #{Primitives::TWO} to start game:"
       user_input
     end
   end
@@ -34,7 +35,7 @@ class Game
     if valid_move?(@board, input.to_s)
       @board.update_board(input, current_player)
       @board.display_board
-    elsif input.between?(1, 9) == false
+    elsif input.between?(Primitives::ONE, Primitives::NINE) == false
       puts "\nThis move is not valid. Try again."
       turn
     elsif taken?(@board, input)
