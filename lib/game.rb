@@ -3,6 +3,7 @@ require_relative './content.rb'
 require_relative './game_rules.rb'
 require_relative './moves.rb'
 require_relative './primitives.rb'
+require 'pry'
 class Game
   include Moves
   include GameRules
@@ -16,12 +17,12 @@ class Game
 
   def user_input
     input = gets.chomp
-    @player1 = Player::Human.new(Primitives::MARKER_X)
     case input
     when '1'
+      @player1 = Player::Human.new(Primitives::MARKER_X)
       @player2 = Player::Human.new(Primitives::MARKER_O)
     when '2'
-      @player2 = Player::Ai.new(Primitives::MARKER_O)
+      select_player_order
     else
       puts "\nInvalid choice. Select #{Primitives::ONE} or #{Primitives::TWO} to start game:"
       user_input
@@ -58,5 +59,21 @@ class Game
 
   def current_player
     turn_count(@board.cells).even? ? @player1 : @player2
+  end
+
+  def select_player_order
+    puts "\n Choose 1 to play first, or 2 to play second: "
+    input = gets.chomp
+    case input
+    when '1'
+      @player1 = Player::Human.new(Primitives::MARKER_X)
+      @player2 = Player::Ai.new(Primitives::MARKER_O)
+    when '2'
+      @player1 = Player::Ai.new(Primitives::MARKER_X)
+      @player2 = Player::Human.new(Primitives::MARKER_O)
+    else
+      puts "\nInvalid choice. Select #{Primitives::ONE} or #{Primitives::TWO} to start game:"
+      user_input
+    end
   end
 end

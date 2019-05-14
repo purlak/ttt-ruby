@@ -5,8 +5,8 @@ module Primitives
   FIVE = 5
   NINE = 9
   TEN = 10
-  MULTIPLIER = -9
-  EMPTY_STRING = " "
-  MARKER_X = "X"
-  MARKER_O = "O"
+  MULTIPLIER = -1
+  EMPTY_STRING = ' '.freeze
+  MARKER_X = 'X'.freeze
+  MARKER_O = 'O'.freeze
 end

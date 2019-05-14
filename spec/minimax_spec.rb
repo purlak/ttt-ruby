@@ -12,8 +12,8 @@ describe Minimax do
     @game = Game.new(@board, @player_1, @player_2)
   end
 
-  describe '#best_move' do
-    it 'returns the best move when there are two moves left (example 1)' do
+  describe 'Human plays first' do
+    it 'Ai returns the best move when there are two moves left (example 1)' do
       @board.cells = [
         'X', 'O', 'X',
         'O', 'X', 'O',
@@ -23,7 +23,7 @@ describe Minimax do
       expect(Minimax.new.move(@game)).to eq(7)
     end
 
-    it 'returns the best move when there are two moves left (example 2)' do
+    it 'Ai returns the best move when there are two moves left (example 2)' do
       @board.cells = [
         'X', 'X', 'O',
         'O', 'X', 'O',
@@ -33,7 +33,7 @@ describe Minimax do
       expect(Minimax.new.move(@game)).to eq(9)
     end
 
-    it 'returns the winning move when there are three moves left' do
+    it 'Ai returns the winning move when there are three moves left' do
       @board.cells = [
         'X', 'X', 'O',
         'O', 'X', 'O',
@@ -43,7 +43,7 @@ describe Minimax do
       expect(Minimax.new.move(@game)).to eq(9)
     end
 
-    it 'returns center move as the first move when center is unoccupied' do
+    it 'Ai returns center move as the first move when center is unoccupied' do
       @board.cells = [
         'X', ' ', ' ',
         ' ', ' ', ' ',
@@ -53,11 +53,59 @@ describe Minimax do
       expect(Minimax.new.move(@game)).to eq(5)
     end
 
-    it 'returns blocking move when X is in a position to win ' do
+    it 'Ai returns blocking move when Human is in a position to win ' do
       @board.cells = [
         'X', ' ', ' ',
         ' ', 'O', ' ',
         'X', ' ', ' '
+      ]
+
+      expect(Minimax.new.move(@game)).to eq(4)
+    end
+
+    it 'Ai returns winning move against blocking move when Ai is in a position to win ' do
+      @board.cells = [
+        ' ', ' ', 'X',
+        ' ', 'O', ' ',
+        'X', 'O', 'X'
+      ]
+
+      expect(Minimax.new.move(@game)).to eq(2)
+    end
+  end
+
+  describe 'Ai plays first' do
+    before do
+      @player_1 = Player::Ai.new('X')
+      @player_2 = Player::Human.new('O')
+      @game = Game.new(@board, @player_1, @player_2)
+    end
+
+    it 'Ai returns winning move against blocking move when Ai is in a position to win ' do
+      @board.cells = [
+        'X', ' ', 'X',
+        ' ', 'X', 'O',
+        'O', ' ', 'O'
+      ]
+
+      expect(Minimax.new.move(@game)).to eq(2)
+    end
+
+    it 'Ai returns winning move against blocking move when Ai is in a position to win ' do
+      @board.cells = [
+        'X', ' ', 'O',
+        ' ', 'X', 'X',
+        'O', ' ', 'O'
+      ]
+
+      expect(Minimax.new.move(@game)).to eq(4)
+    end
+
+    it 'Ai returns winning move against blocking move when Ai is in a position to win ' do
+      @board.cells = [
+        'X', ' ', 'O',
+        ' ', 'X', ' ',
+        'X', 'O', 'O'
       ]
 
       expect(Minimax.new.move(@game)).to eq(4)
