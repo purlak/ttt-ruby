@@ -3,10 +3,12 @@ require_relative './content.rb'
 require_relative './game_rules.rb'
 require_relative './moves.rb'
 require_relative './primitives.rb'
+require_relative './get_input.rb'
 
 class Game
   include Moves
   include GameRules
+  include GetInput
   attr_accessor :board, :player1, :player2
 
   def initialize(board = Board.new, player1 = nil, player2 = nil)
@@ -16,8 +18,7 @@ class Game
   end
 
   def user_input
-    input = gets.chomp
-    case input
+    case get_input
     when '1'
       @player1 = Player::Human.new(Primitives::MARKER_X)
       @player2 = Player::Human.new(Primitives::MARKER_O)
@@ -63,8 +64,7 @@ class Game
 
   def select_player_order
     puts "\n Choose 1 to play first, or 2 to play second: "
-    input = gets.chomp
-    case input
+    case get_input
     when '1'
       @player1 = Player::Human.new(Primitives::MARKER_X)
       @player2 = Player::Ai.new(Primitives::MARKER_O)
