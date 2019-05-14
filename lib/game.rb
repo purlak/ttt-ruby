@@ -3,7 +3,7 @@ require_relative './content.rb'
 require_relative './game_rules.rb'
 require_relative './moves.rb'
 require_relative './primitives.rb'
-require 'pry'
+
 class Game
   include Moves
   include GameRules
