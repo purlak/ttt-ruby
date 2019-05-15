@@ -1,5 +1,5 @@
-module GetInput
-  def get_input
+class GetInput
+  def self.get_input
     gets.chomp
   end
 end

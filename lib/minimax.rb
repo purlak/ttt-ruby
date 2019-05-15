@@ -1,8 +1,10 @@
 require_relative './game_rules.rb'
 require_relative './moves.rb'
-require_relative './primitives.rb'
+require_relative './spot.rb'
 require_relative './player.rb'
 require_relative './players/ai.rb'
+require_relative './marker.rb'
+require_relative './score.rb'
 
 class Minimax
   include Moves
@@ -19,10 +21,10 @@ class Minimax
       opponent = game.player1
     end
     new_board = game.board.clone
-    if taken?(new_board, Primitives::FIVE)
+    if taken?(new_board, Spot::FIVE)
       best_move(new_board, current_player, opponent)
     else
-      return Primitives::FIVE
+      return Spot::FIVE
     end
   end
 
@@ -33,22 +35,22 @@ class Minimax
 
     available_spots.each do |spot|
       board.update_board(spot, current_player)
-      scores[spot] = Primitives::MULTIPLIER * best_move(board, opponent, current_player, recursion_counter + 1)
-      board.cells[spot - 1] = Primitives::EMPTY_STRING
+      scores[spot] = Score::MULTIPLIER * best_move(board, opponent, current_player, recursion_counter + 1)
+      board.cells[spot - 1] = Spot::EMPTY_SPOT
     end
     evaluate(recursion_counter, scores)
   end
 
   def empty_indexes(board)
-    new_array = board.cells.each_index.select { |cell| board.cells[cell] != Primitives::MARKER_X && board.cells[cell] != Primitives::MARKER_O }
+    new_array = board.cells.each_index.select { |cell| board.cells[cell] != Marker::X && board.cells[cell] != Marker::O }
     new_array.map! { |item| item += 1 }
   end
 
   def score_move(board, recursion_counter, current_player, opponent)
     if board.winning?(board, current_player)
-      10 - recursion_counter
+      Score::COUNTER - recursion_counter
     elsif board.winning?(board, opponent)
-      recursion_counter - 10
+      recursion_counter - Score::COUNTER
     else
       0
     end

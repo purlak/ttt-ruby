@@ -11,7 +11,7 @@ describe Player::Human do
 
   describe 'move' do
     it 'asks the user for input and returns it' do
-      expect(@human).to receive(:gets).and_return('1')
+      expect(@human).to receive(:move).and_return('1')
 
       expect(@human.move([])).to eq('1')
     end
