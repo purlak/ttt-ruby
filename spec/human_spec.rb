@@ -7,13 +7,15 @@ describe Player::Human do
     allow($stdin).to receive(:gets)
     allow($stdout).to receive(:puts)
     @human = Player::Human.new('X')
+    @ai = Player::Ai.new('O')
+    @board = []
   end
 
   describe 'move' do
     it 'asks the user for input and returns it' do
       expect(@human).to receive(:move).and_return('1')
 
-      expect(@human.move([])).to eq('1')
+      expect(@human.move(@board, @human, @ai)).to eq('1')
     end
   end
 end

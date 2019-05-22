@@ -7,21 +7,9 @@ require_relative './marker.rb'
 require_relative './score.rb'
 
 class Minimax
-  include Moves
-  include GameRules
-  attr_accessor :game
-
-  def move(game)
-    @game = game
-    if @game.player1.instance_of? Player::Ai
-      current_player = game.player1
-      opponent = game.player2
-    else
-      current_player = game.player2
-      opponent = game.player1
-    end
-    new_board = game.board.clone
-    if taken?(new_board, Spot::FIVE)
+  def move(board, current_player, opponent)
+    new_board = board.clone
+    if Moves.taken?(new_board, Spot::FIVE)
       best_move(new_board, current_player, opponent)
     else
       return Spot::FIVE
@@ -31,7 +19,7 @@ class Minimax
   def best_move(board, current_player, opponent, recursion_counter = 0)
     scores = {}
     available_spots = empty_indexes(board)
-    return score_move(board, recursion_counter, current_player, opponent) if @game.over?(board) != false
+    return score_move(board, recursion_counter, current_player, opponent) if GameRules.over?(board) != false
 
     available_spots.each do |spot|
       board.update_board(spot, current_player)
@@ -47,9 +35,9 @@ class Minimax
   end
 
   def score_move(board, recursion_counter, current_player, opponent)
-    if board.winning?(board, current_player)
+    if GameRules.winning?(board, current_player)
       Score::COUNTER - recursion_counter
-    elsif board.winning?(board, opponent)
+    elsif GameRules.winning?(board, opponent)
       recursion_counter - Score::COUNTER
     else
       0

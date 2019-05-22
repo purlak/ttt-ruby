@@ -13,17 +13,17 @@ describe Cli do
       subject.call
     end
 
-    it 'takes in a text argument displays text' do
-      text = 'test'
+    # it 'takes in a text argument displays text' do
+    #   text = 'test'
+    #
+    #   expect(subject).to receive(:display_text).with(text).and_return(text)
+    #
+    #   subject.display_text(text)
+    # end
 
-      expect(subject).to receive(:display_text).with(text).and_return(text)
-
-      subject.display_text(text)
-    end
-
-    it 'displays welcome message and menu options' do
+    it 'displays welcome message' do
       allow(subject).to receive(:clear_screen)
-      expected = "Welcome to Tic Tac Toe!\n\nSelect your game:\n1. Human v. Human\n2. Human v. Ai\n\n"
+      expected = "Welcome to Tic Tac Toe!\n\n"
 
       expect do
         subject.call

@@ -3,13 +3,13 @@ require_relative '../lib/board'
 require_relative '../lib/players/human'
 require_relative '../lib/players/ai'
 require_relative '../lib/minimax'
+require 'pry'
 
 describe Minimax do
   before do
     @board = Board.new
     @player_1 = Player::Human.new('X')
     @player_2 = Player::Ai.new('O')
-    @game = Game.new(@board, @player_1, @player_2)
   end
 
   describe '#best move' do
@@ -21,7 +21,7 @@ describe Minimax do
           ' ', 'X', ' '
         ]
 
-        expect(Minimax.new.move(@game)).to eq(7)
+        expect(Minimax.new.move(@board, @player_2, @player_1)).to eq(7)
       end
 
       it 'Ai returns the best move when there are two moves left (example 2)' do
@@ -31,7 +31,7 @@ describe Minimax do
           'X', ' ', ' '
         ]
 
-        expect(Minimax.new.move(@game)).to eq(9)
+        expect(Minimax.new.move(@board, @player_2, @player_1)).to eq(9)
       end
 
       it 'Ai returns the winning move when there are three moves left' do
@@ -41,7 +41,7 @@ describe Minimax do
           ' ', ' ', ' '
         ]
 
-        expect(Minimax.new.move(@game)).to eq(9)
+        expect(Minimax.new.move(@board, @player_2, @player_1)).to eq(9)
       end
 
       it 'Ai returns center move as the first move when center is unoccupied' do
@@ -51,7 +51,7 @@ describe Minimax do
           ' ', ' ', ' '
         ]
 
-        expect(Minimax.new.move(@game)).to eq(5)
+        expect(Minimax.new.move(@board, @player_2, @player_1)).to eq(5)
       end
 
       it 'Ai returns blocking move when Human is in a position to win ' do
@@ -61,7 +61,7 @@ describe Minimax do
           'X', ' ', ' '
         ]
 
-        expect(Minimax.new.move(@game)).to eq(4)
+        expect(Minimax.new.move(@board, @player_2, @player_1)).to eq(4)
       end
 
       it 'Ai returns winning move against blocking move when Ai is in a position to win ' do
@@ -71,7 +71,7 @@ describe Minimax do
           'X', 'O', 'X'
         ]
 
-        expect(Minimax.new.move(@game)).to eq(2)
+        expect(Minimax.new.move(@board, @player_2, @player_1)).to eq(2)
       end
     end
 
@@ -79,7 +79,6 @@ describe Minimax do
       before do
         @player_1 = Player::Ai.new('X')
         @player_2 = Player::Human.new('O')
-        @game = Game.new(@board, @player_1, @player_2)
       end
 
       it 'Ai returns winning move against blocking move when Ai is in a position to win ' do
@@ -89,7 +88,7 @@ describe Minimax do
           'O', ' ', 'O'
         ]
 
-        expect(Minimax.new.move(@game)).to eq(2)
+        expect(Minimax.new.move(@board, @player_1, @player_2)).to eq(2)
       end
 
       it 'Ai returns winning move against blocking move when Ai is in a position to win ' do
@@ -99,7 +98,7 @@ describe Minimax do
           'O', ' ', 'O'
         ]
 
-        expect(Minimax.new.move(@game)).to eq(4)
+        expect(Minimax.new.move(@board, @player_1, @player_2)).to eq(4)
       end
 
       it 'Ai returns winning move against blocking move when Ai is in a position to win ' do
@@ -109,7 +108,7 @@ describe Minimax do
           'X', 'O', 'O'
         ]
 
-        expect(Minimax.new.move(@game)).to eq(4)
+        expect(Minimax.new.move(@board, @player_1, @player_2)).to eq(4)
       end
     end
   end

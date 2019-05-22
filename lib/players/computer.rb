@@ -3,7 +3,7 @@ class Player::Computer < Player
   include GameRules
   attr_accessor :board
 
-  def move(board)
+  def move(board, _player1, _player2)
     @board = board
     if !winning_move.nil?
       input = winning_move + 1
