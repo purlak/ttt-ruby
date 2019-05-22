@@ -2,6 +2,7 @@ require_relative './moves.rb'
 require_relative './display_text.rb'
 require_relative './content.rb'
 require_relative './menu_option.rb'
+require_relative './counter.rb'
 require_relative './get_input.rb'
 
 module GetPlayer
@@ -15,18 +16,18 @@ module GetPlayer
 
   def self.get_player
     players = []
-    counter = 1
-    while counter <= 2
+    counter = Counter::ONE
+    while counter <= Counter::TWO
       DisplayText.display_text(Content.menu(counter))
       case GetInput.get_input
       when '1'
-        if counter == 1
+        if counter == Counter::ONE
           players[0] = Player::Human.new(Marker::X)
         else
           players[1] = Player::Human.new(Marker::O)
         end
       when '2'
-        if counter == 2
+        if counter == Counter::TWO
           players[1] = Player::Ai.new(Marker::O)
         else
           players[0] = Player::Ai.new(Marker::X)
@@ -35,7 +36,7 @@ module GetPlayer
         puts "\nInvalid choice. Select #{MenuOption::ONE} or #{MenuOption::TWO} to start game:"
         get_player
       end
-      counter += 1
+      counter += Counter::ONE
     end
     players
   end
