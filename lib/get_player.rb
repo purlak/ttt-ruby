@@ -21,17 +21,9 @@ module GetPlayer
       DisplayText.display_text(Content.menu(counter))
       case GetInput.get_input
       when '1'
-        if counter == Counter::ONE
-          players[0] = Player::Human.new(Marker::X)
-        else
-          players[1] = Player::Human.new(Marker::O)
-        end
+        counter == Counter::ONE ? (players[0] = Player::Human.new(Marker::X)) : (players[1] = Player::Human.new(Marker::O))
       when '2'
-        if counter == Counter::TWO
-          players[1] = Player::Ai.new(Marker::O)
-        else
-          players[0] = Player::Ai.new(Marker::X)
-        end
+        counter == Counter::TWO ? (players[1] = Player::Ai.new(Marker::O)) : (players[0] = Player::Ai.new(Marker::X))
       else
         puts "\nInvalid choice. Select #{MenuOption::ONE} or #{MenuOption::TWO} to start game:"
         get_player
