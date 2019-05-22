@@ -3,7 +3,6 @@ require_relative '../lib/board'
 require_relative '../lib/players/human'
 require_relative '../lib/players/ai'
 require_relative '../lib/minimax'
-require 'pry'
 
 describe Minimax do
   before do
