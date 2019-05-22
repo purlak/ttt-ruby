@@ -5,9 +5,9 @@ require_relative './spot.rb'
 require_relative './marker.rb'
 
 class Game
-  attr_accessor :board, :player1, :player2
+  attr_accessor :board, :player1, :player2, :rules
 
-  def initialize(board = Board.new, player1 = nil, player2 = nil)
+  def initialize(board = Board.new, player1 = nil, player2 = nil, _rules = GameRules)
     @board = board
     @player1 = player1
     @player2 = player2
@@ -32,11 +32,11 @@ class Game
     get_player
     @board.reset!
     @board.display_board
-    turn until GameRules.over?(@board)
-    if GameRules.draw?(@board)
+    turn until rules.over?(@board)
+    if rules.draw?(@board)
       puts "\nGame Draws."
-    elsif GameRules.won?(@board)
-      puts "\nGame Over. Winner is #{GameRules.winner(board)}."
+    elsif rules.won?(@board)
+      puts "\nGame Over. Winner is #{rules.winner(board)}."
     end
   end
 
