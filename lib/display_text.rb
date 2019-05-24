@@ -1,5 +1,5 @@
-module DisplayText
-  def self.display_text(text)
-    puts "#{text}\n\n"
+class DisplayText
+  def call(text)
+    print "#{text}"
   end
 end

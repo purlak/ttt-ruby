@@ -7,20 +7,37 @@ describe Cli do
     allow($stdout).to receive(:puts)
   end
 
-  describe 'call' do
-    it 'clears screen before printing menu' do
-      expect(subject).to receive(:clear_screen)
+  describe '#display_welcome_message' do
+    it 'clears screen before printing welcome message' do
+      cli = Cli.new
 
-      subject.call(DisplayText.method(:display_text))
+      expect(cli).to receive(:clear_screen)
+
+      cli.display_welcome_message
     end
 
     it 'displays welcome message' do
-      allow(subject).to receive(:clear_screen)
-      expected = "Welcome to Tic Tac Toe!\n\n"
+      class FakeDisplayText
+        attr_accessor :called
 
-      expect do
-        subject.call(m = DisplayText.method(:display_text))
-      end.to output(expected).to_stdout
+        def initialize
+          @called = false
+        end
+
+        def call(message)
+          @called = true
+        end
+      end
+
+      fake_display_text = FakeDisplayText.new
+
+      cli = Cli.new(fake_display_text)
+
+      allow(cli).to receive(:clear_screen)
+
+      expect(fake_display_text.called).to eq(false)
+      cli.display_welcome_message
+      expect(fake_display_text.called).to eq(true)
     end
   end
 end

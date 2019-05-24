@@ -29,8 +29,11 @@ class Game
     end
   end
 
-  def play(m)
-    get_player(m)
+  def play(get_players)
+    players = get_players.get
+    @player1 = players[0]
+    @player2 = players[1]
+
     @board.reset!
     @board.display_board
     turn until @rules.over?(@board)
@@ -42,16 +45,10 @@ class Game
   end
 
   def current_player
-    GetPlayer.current_player(board, player1, player2)
+    GetPlayers.current_player(board, player1, player2)
   end
 
   def opponent
-    GetPlayer.opponent(board, player1, player2)
-  end
-
-  def get_player(m)
-    players = GetPlayer.get_player(m)
-    @player1 = players[0]
-    @player2 = players[1]
+    GetPlayers.opponent(board, player1, player2)
   end
 end
