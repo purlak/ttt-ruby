@@ -14,11 +14,11 @@ module GetPlayer
     Moves.turn_count(board.cells).odd? ? player1 : player2
   end
 
-  def self.get_player
+  def self.get_player(m)
     players = []
     counter = Counter::ONE
     while counter <= Counter::TWO
-      DisplayText.display_text(Content.menu(counter))
+      m.call(Content.menu(counter))
       case GetInput.get_input
       when '1'
         counter == Counter::ONE ? (players[0] = Player::Human.new(Marker::X)) : (players[1] = Player::Human.new(Marker::O))
@@ -26,7 +26,7 @@ module GetPlayer
         counter == Counter::TWO ? (players[1] = Player::Ai.new(Marker::O)) : (players[0] = Player::Ai.new(Marker::X))
       else
         puts "\nInvalid choice. Select #{MenuOption::ONE} or #{MenuOption::TWO} to start game:"
-        get_player
+        get_player(m)
       end
       counter += Counter::ONE
     end

@@ -7,7 +7,8 @@ require_relative './marker.rb'
 class Game
   attr_accessor :board, :player1, :player2, :rules
 
-  def initialize(board = Board.new, player1 = nil, player2 = nil, _rules = GameRules)
+  def initialize(board = Board.new, player1 = nil, player2 = nil, rules = GameRules)
+    @rules = rules
     @board = board
     @player1 = player1
     @player2 = player2
@@ -28,15 +29,15 @@ class Game
     end
   end
 
-  def play
-    get_player
+  def play(m)
+    get_player(m)
     @board.reset!
     @board.display_board
-    turn until rules.over?(@board)
-    if rules.draw?(@board)
+    turn until @rules.over?(@board)
+    if @rules.draw?(@board)
       puts "\nGame Draws."
-    elsif rules.won?(@board)
-      puts "\nGame Over. Winner is #{rules.winner(board)}."
+    elsif @rules.won?(@board)
+      puts "\nGame Over. Winner is #{@rules.winner(board)}."
     end
   end
 
@@ -48,8 +49,8 @@ class Game
     GetPlayer.opponent(board, player1, player2)
   end
 
-  def get_player
-    players = GetPlayer.get_player
+  def get_player(m)
+    players = GetPlayer.get_player(m)
     @player1 = players[0]
     @player2 = players[1]
   end
