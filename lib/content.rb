@@ -4,8 +4,8 @@ module Content
   end
 
   def self.menu(num)
-    "Select Player#{num}:\n" \
+    "\nSelect Player#{num}:\n" \
     "1. Human\n" \
-    '2. Ai'\
+    "2. Ai\n"
   end
 end
