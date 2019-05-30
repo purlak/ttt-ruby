@@ -3,6 +3,7 @@ require_relative '../lib/player.rb'
 require_relative '../lib/players/human.rb'
 require_relative '../lib/players/ai.rb'
 require_relative '../lib/marker.rb'
+require_relative '../lib/content.rb'
 
 describe 'GetPlayers' do
   class FakeGetInput
@@ -23,6 +24,8 @@ describe 'GetPlayers' do
     end
 
     it 'asks user to select player1 as human' do
+      allow(subject).to receive(:print)
+
       players = GetPlayers.get(FakeGetInput.new(["1"]))
       player_1 = players[0]
 

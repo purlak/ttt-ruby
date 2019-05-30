@@ -29,18 +29,16 @@ class Game
     end
   end
 
-  def play(get_players)
+  def play(get_players, display_text=DisplayText.new)
     players = get_players.get
     @player1 = players[0]
     @player2 = players[1]
-
-    @board.reset!
     @board.display_board
     turn until @rules.over?(@board)
     if @rules.draw?(@board)
       puts "\nGame Draws."
     elsif @rules.won?(@board)
-      puts "\nGame Over. Winner is #{@rules.winner(board)}."
+      display_text.call("\nGame Over. Winner is #{@rules.winner(board)}.")
     end
   end
 
