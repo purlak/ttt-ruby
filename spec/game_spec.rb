@@ -5,10 +5,11 @@ require_relative '../lib/players/human.rb'
 require_relative '../lib/players/ai.rb'
 require_relative '../lib/game_rules.rb'
 require_relative '../lib/get_players.rb'
+require 'pry'
 
 describe 'Game' do
   context '#play' do
-    xit 'asks user for player choice' do
+    it 'asks user for player choice' do
       board = Board.new
       player1 = Player::Human.new('X')
       player2 = Player::Ai.new('O')
@@ -18,15 +19,16 @@ describe 'Game' do
       class FakeGetPlayers
         def get
           [
-            :player_1,
-            :player_2
+            Player::Human.new('X'),
+            Player::Ai.new('O')
           ]
         end
       end
 
       game.play(FakeGetPlayers.new)
-      expect(game.player1).to eq(:player_1)
-      expect(game.player2).to eq(:player_2)
+
+      expect(game.player1).to eq(player1)
+      expect(game.player2).to eq(player2)
     end
   end
 
