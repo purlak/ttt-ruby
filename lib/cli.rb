@@ -1,14 +1,16 @@
+require_relative './display_text.rb'
 require_relative './content.rb'
-require_relative './game.rb'
+
 class Cli
-  def call
-    clear_screen
-    display_text(Content.welcome)
-    display_text(Content.menu)
+  attr_accessor :display_text
+
+  def initialize(display_text = DisplayText.new)
+    @display_text = display_text
   end
 
-  def display_text(text)
-    puts "#{text}\n\n"
+  def display_welcome_message
+    clear_screen
+    @display_text.call(Content.welcome)
   end
 
   def clear_screen
