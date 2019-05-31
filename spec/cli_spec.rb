@@ -6,7 +6,8 @@ describe Cli do
   describe '#display_welcome_message' do
     it 'clears screen before printing welcome message' do
       class FakeDisplayText
-        def call(text); end
+        def call(text)
+        end
       end
 
       cli = Cli.new(FakeDisplayText.new)

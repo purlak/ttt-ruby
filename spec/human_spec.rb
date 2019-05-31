@@ -4,8 +4,6 @@ require_relative '../lib/players/human.rb'
 
 describe Player::Human do
   before do
-    allow($stdin).to receive(:gets)
-    allow($stdout).to receive(:puts)
     @human = Player::Human.new('X')
     @ai = Player::Ai.new('O')
     @board = []
