@@ -9,3 +9,4 @@ Steps
 7. Display game result
 8. AI plays a smart move (mini max)
 9. Ability to choose player order
+10. Ai v. Ai mode
