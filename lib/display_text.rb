@@ -1,5 +1,5 @@
 class DisplayText
   def call(text)
-    print "#{text}"
+    print text.to_s
   end
 end

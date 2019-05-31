@@ -5,7 +5,6 @@ require_relative '../lib/players/human.rb'
 require_relative '../lib/players/ai.rb'
 require_relative '../lib/game_rules.rb'
 require_relative '../lib/get_players.rb'
-require 'pry'
 
 class FakeGetPlayers
   attr_accessor :player1, :player2
@@ -30,9 +29,9 @@ describe 'Game' do
       allow(board).to receive(:display_board)
       board.cells =
         [
-          "X", "O", "O",
-          " ", "X", " ",
-          " ", " ", "X"
+          'X', 'O', 'O',
+          ' ', 'X', ' ',
+          ' ', ' ', 'X'
         ]
       player1 = Player::Human.new('X')
       player2 = Player::Ai.new('O')
@@ -40,8 +39,7 @@ describe 'Game' do
       game = Game.new(board, player1, player2, rules)
 
       class FakeDisplayText
-        def call(text)
-        end
+        def call(text); end
       end
 
       game.play(FakeGetPlayers.new(player1, player2), FakeDisplayText.new)

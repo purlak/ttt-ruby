@@ -29,7 +29,7 @@ class Game
     end
   end
 
-  def play(get_players, display_text=DisplayText.new)
+  def play(get_players, display_text = DisplayText.new)
     players = get_players.get
     @player1 = players[0]
     @player2 = players[1]

@@ -17,11 +17,11 @@ module GetPlayers
     Moves.turn_count(board.cells).odd? ? player1 : player2
   end
 
-  def self.get(get_input=GetInput.new)
+  def self.get(get_input = GetInput.new, display_text = DisplayText.new)
     players = []
     NUMBER_OF_PLAYERS.times do |number|
       player_number = number + 1
-      print Content.menu(player_number)
+      display_text.call(Content.menu(player_number))
       user_input = get_input.call
       players << get_player(user_input, player_number)
     end
@@ -29,16 +29,16 @@ module GetPlayers
   end
 
   def self.get_player(user_input, player_number)
-    if player_number == 1
-      marker = Marker::X
-    else
-      marker = Marker::O
-    end
+    marker = if player_number == 1
+               Marker::X
+             else
+               Marker::O
+             end
 
-    if user_input == '1'
-      player = Player::Human.new(marker)
-    else
-      player = Player::Ai.new(marker)
-    end
+    player = if user_input == '1'
+               Player::Human.new(marker)
+             else
+               Player::Ai.new(marker)
+             end
   end
 end

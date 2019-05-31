@@ -16,17 +16,21 @@ describe 'GetPlayers' do
     end
   end
 
+  class FakeDisplayText
+    def call(text); end
+  end
+
   context '#get' do
     it 'displays menu' do
       expect do
-        GetPlayers.get(FakeGetInput.new(["1"]))
+        GetPlayers.get(FakeGetInput.new(['1']))
       end.to output(Content.menu(1) + Content.menu(2)).to_stdout
     end
 
     it 'asks user to select player1 as human' do
-      allow(subject).to receive(:print)
+      allow($stdin).to receive(:print)
 
-      players = GetPlayers.get(FakeGetInput.new(["1"]))
+      players = GetPlayers.get(FakeGetInput.new(['1']), FakeDisplayText.new)
       player_1 = players[0]
 
       expect(player_1).to be_instance_of(Player::Human)
@@ -34,7 +38,7 @@ describe 'GetPlayers' do
     end
 
     it 'asks user to select player1 as ai' do
-      players = GetPlayers.get(FakeGetInput.new(["2"]))
+      players = GetPlayers.get(FakeGetInput.new(['2']), FakeDisplayText.new)
       player_1 = players[0]
 
       expect(player_1).to be_instance_of(Player::Ai)
@@ -42,7 +46,7 @@ describe 'GetPlayers' do
     end
 
     it 'asks user to select player2 as human' do
-      players = GetPlayers.get(FakeGetInput.new(["1", "1"]))
+      players = GetPlayers.get(FakeGetInput.new(%w[1 1]), FakeDisplayText.new)
       player_2 = players[1]
 
       expect(player_2).to be_instance_of(Player::Human)

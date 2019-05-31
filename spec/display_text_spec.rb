@@ -5,7 +5,7 @@ describe 'DisplayText' do
     display_text = DisplayText.new
 
     expect do
-      display_text.call("foo")
-    end.to output("foo").to_stdout
+      display_text.call('foo')
+    end.to output('foo').to_stdout
   end
 end

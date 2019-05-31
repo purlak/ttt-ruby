@@ -9,7 +9,11 @@ describe Cli do
 
   describe '#display_welcome_message' do
     it 'clears screen before printing welcome message' do
-      cli = Cli.new
+      class FakeDisplayText
+        def call(text); end
+      end
+
+      cli = Cli.new(FakeDisplayText.new)
 
       expect(cli).to receive(:clear_screen)
 
@@ -24,7 +28,7 @@ describe Cli do
           @called = false
         end
 
-        def call(message)
+        def call(_message)
           @called = true
         end
       end
