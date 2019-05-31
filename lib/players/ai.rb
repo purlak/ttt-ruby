@@ -1,5 +1,5 @@
 class Player::Ai < Player
-  def move(game)
-    Minimax.new.move(game)
+  def move(board, player1, player2)
+    Minimax.new.move(board, player1, player2)
   end
 end

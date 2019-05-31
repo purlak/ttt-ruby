@@ -1,5 +1,5 @@
 class GetInput
-  def self.get_input
+  def call
     gets.chomp
   end
 end

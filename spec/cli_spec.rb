@@ -1,33 +1,44 @@
 require_relative '../lib/cli.rb'
 require_relative '../lib/content.rb'
+require_relative '../lib/display_text.rb'
 
 describe Cli do
-  before do
-    allow($stdout).to receive(:puts)
-  end
+  describe '#display_welcome_message' do
+    it 'clears screen before printing welcome message' do
+      class FakeDisplayText
+        def call(text)
+        end
+      end
 
-  describe 'call' do
-    it 'clears screen before printing menu' do
-      expect(subject).to receive(:clear_screen)
+      cli = Cli.new(FakeDisplayText.new)
 
-      subject.call
+      expect(cli).to receive(:clear_screen)
+
+      cli.display_welcome_message
     end
 
-    it 'takes in a text argument displays text' do
-      text = 'test'
+    it 'displays welcome message' do
+      class FakeDisplayText
+        attr_accessor :called
 
-      expect(subject).to receive(:display_text).with(text).and_return(text)
+        def initialize
+          @called = false
+        end
 
-      subject.display_text(text)
-    end
+        def call(_message)
+          @called = true
+        end
+      end
 
-    it 'displays welcome message and menu options' do
-      allow(subject).to receive(:clear_screen)
-      expected = "Welcome to Tic Tac Toe!\n\nSelect your game:\n1. Human v. Human\n2. Human v. Ai\n\n"
+      fake_display_text = FakeDisplayText.new
 
-      expect do
-        subject.call
-      end.to output(expected).to_stdout
+      cli = Cli.new(fake_display_text)
+
+      allow(cli).to receive(:clear_screen)
+
+      expect(fake_display_text.called).to eq(false)
+      cli.display_welcome_message
+      expect(fake_display_text.called).to eq(true)
     end
   end
 end

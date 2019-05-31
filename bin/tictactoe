@@ -3,5 +3,5 @@ Dir['./lib/*.rb', './lib/*/*.rb'].each do |f|
   require f
 end
 
-Cli.new.call
-Game.new.play
+Cli.new.display_welcome_message
+Game.new.play(GetPlayers)
