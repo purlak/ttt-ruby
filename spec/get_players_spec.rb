@@ -28,8 +28,6 @@ describe 'GetPlayers' do
     end
 
     it 'asks user to select player1 as human' do
-      allow($stdin).to receive(:print)
-
       players = GetPlayers.get(FakeGetInput.new(['1']), FakeDisplayText.new)
       player_1 = players[0]
 
