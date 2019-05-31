@@ -14,17 +14,17 @@ class Game
     @player2 = player2
   end
 
-  def turn
-    puts "\nIt's now #{current_player.marker}'s turn."
+  def turn(display_text = DisplayText.new)
+    display_text.call("\nIt's now #{current_player.marker}'s turn.\n")
     input = current_player.move(board, current_player, opponent).to_i
     if Moves.valid_move?(@board, input.to_s)
       @board.update_board(input, current_player)
       @board.display_board
     elsif input.between?(Spot::FIRST_SPOT, Spot::LAST_SPOT) == false
-      puts "\nThis move is not valid. Try again."
+      display_text.call("\nThis move is not valid. Try again.")
       turn
     elsif Moves.taken?(@board, input)
-      puts "\nLooks like that position is taken. Try again."
+      display_text.call("\nLooks like that position is taken. Try again.")
       turn
     end
   end
@@ -36,7 +36,7 @@ class Game
     @board.display_board
     turn until @rules.over?(@board)
     if @rules.draw?(@board)
-      puts "\nGame Draws."
+      display_text.call("\nGame Draws.")
     elsif @rules.won?(@board)
       display_text.call("\nGame Over. Winner is #{@rules.winner(board)}.")
     end
