@@ -1,6 +1,6 @@
 module Content
   def self.welcome
-    'Welcome to Tic Tac Toe!'
+    "Welcome to Tic Tac Toe!"
   end
 
   def self.menu(num)

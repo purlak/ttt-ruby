@@ -10,8 +10,7 @@ class Cli
 
   def display_welcome_message
     clear_screen
-    text = "Welcome to Tic Tac Toe!\n\n"
-    @display_text.call(text)
+    @display_text.call(Content.welcome)
   end
 
   def clear_screen
