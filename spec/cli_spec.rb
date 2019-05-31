@@ -3,10 +3,6 @@ require_relative '../lib/content.rb'
 require_relative '../lib/display_text.rb'
 
 describe Cli do
-  before do
-    allow($stdout).to receive(:puts)
-  end
-
   describe '#display_welcome_message' do
     it 'clears screen before printing welcome message' do
       class FakeDisplayText
